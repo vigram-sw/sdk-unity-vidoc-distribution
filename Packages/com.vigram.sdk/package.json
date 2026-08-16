@@ -1,0 +1,19 @@
+{
+  "name": "com.vigram.sdk",
+  "displayName": "viDoc SDK for Unity",
+  "version": "1.0.0",
+  "unity": "2021.3",
+  "description": "Connect Unity apps to viDoc devices to retrieve location data and perform laser distance recordings.",
+  "keywords": [
+    "vigram",
+    "vidoc",
+    "ios",
+    "android",
+    "bluetooth",
+    "gnss"
+  ],
+  "license": "Proprietary",
+  "author": {
+    "name": "viGram"
+  }
+}
