@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Installation And First Run | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Installation And First Run | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="installation-and-first-run">Installation And First Run</h1>
+
+<h2 id="install-through-package-manager">Install Through Package Manager</h2>
+<p>In Unity, open <code>Window &gt; Package Manager</code>, press <code>+</code>, select <code>Add package from git URL...</code>, and enter:</p>
+<pre><code class="lang-text">https://github.com/vigram-sw/sdk-unity-vidoc-distribution.git?path=/Packages/com.vigram.sdk#1.0.0
+</code></pre>
+<p>You can also add the dependency directly to <code>Packages/manifest.json</code>:</p>
+<pre><code class="lang-json">{
+  &quot;dependencies&quot;: {
+    &quot;com.vigram.sdk&quot;: &quot;https://github.com/vigram-sw/sdk-unity-vidoc-distribution.git?path=/Packages/com.vigram.sdk#1.0.0&quot;
+  }
+}
+</code></pre>
+<p>For production projects, prefer an immutable tag such as <code>#1.0.0</code> over a branch name.</p>
+<h2 id="use-a-local-checkout">Use A Local Checkout</h2>
+<p>For SDK development or local validation, use <code>Add package from disk...</code> and select:</p>
+<pre><code class="lang-text">Packages/com.vigram.sdk/package.json
+</code></pre>
+<h2 id="service-lifetime-rule">Service Lifetime Rule</h2>
+<p><code>Vigram</code> service members are factories. They do not return shared singleton instances for the active app session. Create a service once in the owning session or screen and pass the same instance around.</p>
+<p>This matters most for Bluetooth: create one <code>IBluetoothService</code>, scan with it, stop scanning with it, connect with it, pass it into <code>Vigram.GPSService(...)</code>, and disconnect with it.</p>
+<h2 id="token-model">Token Model</h2>
+<p><code>Vigram.Initial()</code> can be called without a token. This is the simplest path when the integration does not use an issued SDK token.</p>
+<pre><code class="lang-csharp">Vigram.Initial().Check(OnAuthenticated);
+</code></pre>
+<p>If the app receives an SDK token from viGram, pass it during initialization:</p>
+<pre><code class="lang-csharp">Vigram.Initial(&quot;YOUR_SDK_TOKEN&quot;).Check(OnAuthenticated);
+</code></pre>
+<p>If viGram provides an SDK token for the integration, initialize with that token before scanning and connecting. Token-related failures are reported through <code>AuthenticationResult.Error</code> or peripheral <code>ConfigurationState</code> errors.</p>
+<h2 id="first-run-flow">First Run Flow</h2>
+<p>This example shows the complete Unity lifecycle for the first viDoc connection. It uses <code>MonoBehaviour</code> only to demonstrate <code>Start()</code> and <code>OnDestroy()</code>; the SDK services themselves are ordinary C# objects.</p>
+<pre><code class="lang-csharp">using System.Collections.Generic;
+using UnityEngine;
+using ViGram;
+
+public class VidocFirstRunExample : MonoBehaviour
+{
+    private IBluetoothService bluetooth;
+    private IPeripheralService peripheral;
+    private bool isConnecting;
+
+    private void Start()
+    {
+        Vigram.Initial().Check(OnAuthenticated);
+    }
+
+    private void OnAuthenticated(AuthenticationResult result)
+    {
+        if (result is AuthenticationResult.Error error)
+        {
+            Debug.LogError($&quot;viDoc SDK authorization failed: {error.Enum} {error.Message}&quot;);
+            return;
+        }
+
+        bluetooth = Vigram.BluetoothService;
+        bluetooth.State(state =&gt; Debug.Log($&quot;Bluetooth state: {state}&quot;));
+        bluetooth.ObserveAvailableDevices(OnDevicesChanged);
+        bluetooth.StartScan();
+    }
+
+    private void OnDevicesChanged(List&lt;BPeripheral&gt; devices)
+    {
+        if (isConnecting || devices.Count == 0)
+        {
+            return;
+        }
+
+        // Replace this with your device picker UI.
+        Connect(devices[0]);
+    }
+
+    private void Connect(BPeripheral selectedPeripheral)
+    {
+        isConnecting = true;
+        bluetooth.StopScan();
+        bluetooth.Connect(selectedPeripheral);
+
+        peripheral = Vigram.PeripheralService(selectedPeripheral);
+        peripheral.State = state =&gt; Debug.Log($&quot;Peripheral state: {state}&quot;);
+        peripheral.ConfigurationState = state =&gt; Debug.Log($&quot;Configuration: {state.GetType().Name}&quot;);
+        peripheral.Nmea = OnNmeaMessage;
+        peripheral.DeviceMessages = message =&gt; Debug.Log($&quot;Device message: {message.GetType().Name}&quot;);
+        peripheral.SatelliteMessages = message =&gt; Debug.Log($&quot;Satellite message: {message.GetType().Name}&quot;);
+        peripheral.Start();
+    }
+
+    private void OnNmeaMessage(NmeaMessage message)
+    {
+        switch (message)
+        {
+            case NmeaMessage.Gga gga:
+                Debug.Log($&quot;GGA coordinate: {gga.Coordinate?.Latitude}, {gga.Coordinate?.Longitude}&quot;);
+                break;
+
+            case NmeaMessage.Gst gst:
+                Debug.Log($&quot;GST accuracy: H={gst.Accuracy.Horizontal} V={gst.Accuracy.Vertical}&quot;);
+                break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        bluetooth?.StopScan();
+        bluetooth?.Disconnect();
+    }
+}
+</code></pre>
+<p>The SDK does not provide a device picker UI. <code>ObserveAvailableDevices</code> can fire multiple times while scanning, so production apps should show the latest list and let the user choose the intended <code>BPeripheral</code>.</p>
+<h2 id="initial-peripheral-configuration">Initial Peripheral Configuration</h2>
+<p>Pass <code>PeripheralConfiguration</code> to <code>Vigram.PeripheralService(...)</code> when the app needs a known startup profile for GNSS rate, elevation mask, constellation state, NAV-DOP/NAV-PVT messages, or dynamic model.</p>
+<pre><code class="lang-csharp">PeripheralConfiguration configuration = new(
+    rateOfChangeMessages: RateValue.Rate.Hertz7,
+    elevationType: ElevationValue.Elevation.Angle10,
+    glonassActivate: true,
+    beidouActivate: true,
+    galileoActivate: true,
+    qzssActivate: true,
+    sbassActivate: true,
+    navDOPActivate: true,
+    navPVTActivate: true,
+    dynamicType: DynamicStateType.Pedestrian);
+
+IPeripheralService peripheral = Vigram.PeripheralService(
+    selectedPeripheral,
+    configuration: configuration);
+</code></pre>
+<p>Subscribe to <code>ConfigurationState</code> before calling <code>Start()</code> so the application can show progress or failure details.</p>
+<h2 id="file-logging">File Logging</h2>
+<p>Create the logger before creating the logged peripheral service.</p>
+<pre><code class="lang-csharp">using System.IO;
+using UnityEngine;
+using ViGram;
+
+string logPath = Path.Combine(Application.persistentDataPath, &quot;vidoc-session.csv&quot;);
+ILogger logger = Vigram.LoggerService(logPath);
+IPeripheralService peripheral = Vigram.PeripheralService(selectedPeripheral, logger: logger);
+</code></pre>
+<p>Use logging during integration, field tests, and support sessions. For detailed logging guidance, see <a href="recipes.html#log-a-full-session">Log A Full Session</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

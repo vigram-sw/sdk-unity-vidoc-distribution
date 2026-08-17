@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Platforms And Build | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Platforms And Build | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="platforms-and-build">Platforms And Build</h1>
+
+<h2 id="ios">iOS</h2>
+<p>The package includes native iOS plugins:</p>
+<ul>
+<li><code>Runtime/Plugins/iOS/BluetoothLE</code>;</li>
+<li><code>Runtime/Plugins/iOS/MotionManager</code>;</li>
+<li><code>Runtime/Plugins/iOS/PrivacyInfo.xcprivacy</code>.</li>
+</ul>
+<p>The editor post-build processor <code>Editor/PostBuildProcess.cs</code> adds this key to the generated <code>Info.plist</code>:</p>
+<pre><code class="lang-text">NSBluetoothAlwaysUsageDescription = Needed to work with viGram
+</code></pre>
+<p>Check the final <code>Info.plist</code> after Xcode export, especially if the host application already provides its own Bluetooth permission text. Production applications should use user-facing permission text that matches the app experience.</p>
+<p>Keep <code>PrivacyInfo.xcprivacy</code> in the exported iOS project. It is part of the package metadata for Apple's privacy manifest requirements and should be present alongside the native iOS plugins.</p>
+<h2 id="android">Android</h2>
+<p>The Android plugin is located at:</p>
+<pre><code class="lang-text">Runtime/Plugins/Android/BluetoothLE.androidlib
+</code></pre>
+<p>The package <code>AndroidManifest.xml</code> declares:</p>
+<ul>
+<li><code>android.hardware.bluetooth_le</code>;</li>
+<li><code>android.permission.BLUETOOTH</code> up to API 30;</li>
+<li><code>android.permission.BLUETOOTH_ADMIN</code> up to API 30;</li>
+<li><code>android.permission.BLUETOOTH_ADVERTISE</code>;</li>
+<li><code>android.permission.BLUETOOTH_CONNECT</code>;</li>
+<li><code>android.permission.BLUETOOTH_SCAN</code>;</li>
+<li><code>android.permission.ACCESS_COARSE_LOCATION</code>;</li>
+<li><code>android.permission.ACCESS_FINE_LOCATION</code>;</li>
+<li><code>android.permission.WRITE_EXTERNAL_STORAGE</code> up to API 28.</li>
+</ul>
+<p>The androidlib <code>build.gradle</code> uses <code>compileSdk 36</code>, <code>targetSdk 31</code>, and <code>minSdk 26</code>.</p>
+<p>Android 12 and newer require runtime Bluetooth permissions for scan/connect operations. The host Unity application should request permissions before starting a scan and should handle denial with user-facing UI.</p>
+<h2 id="render-pipeline">Render Pipeline</h2>
+<p>The SDK does not include rendering components, shaders, scenes, or visual prefabs. It is independent of Built-in Render Pipeline, URP, and HDRP.</p>
+<h2 id="webgl">WebGL</h2>
+<p>WebGL is not listed in <code>package.json</code>, <code>README.md</code>, or <code>CHANGELOG.md</code> as a supported target. The current package depends on mobile Bluetooth LE, Android/iOS native plugins, and a mobile motion bridge.</p>
+<h2 id="build-validation-checklist">Build Validation Checklist</h2>
+<ol>
+<li>Install the package through Unity Package Manager.</li>
+<li>Select an iOS or Android build target.</li>
+<li>Verify platform permissions and generated platform metadata.</li>
+<li>Build and run on a physical device.</li>
+<li>Check <code>IBluetoothService.State</code>.</li>
+<li>Confirm that <code>ObserveAvailableDevices</code> receives viDoc devices.</li>
+<li>Connect to a selected <code>BPeripheral</code>.</li>
+<li>Subscribe to <code>IPeripheralService.ConfigurationState</code> before <code>Start()</code>.</li>
+<li>Confirm that <code>Nmea</code> receives GGA/GST messages.</li>
+<li>If NTRIP is used, verify mountpoint loading, task startup, and correction state.</li>
+<li>If laser features are used, confirm device capabilities through <code>CurrentDevice</code>.</li>
+</ol>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

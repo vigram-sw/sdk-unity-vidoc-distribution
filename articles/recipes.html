@@ -1,0 +1,568 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Practical Recipes | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Practical Recipes | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="practical-recipes">Practical Recipes</h1>
+
+<p>This section turns the public API into integration-oriented workflows. Each recipe focuses on a task that normally appears in a production Unity app.</p>
+<h2 id="own-a-peripheral-session">Own A Peripheral Session</h2>
+<p>Use this pattern after the application has authenticated, scanned, and selected a <code>BPeripheral</code>. The complete first-run flow lives in <a href="getting-started.html">Installation And First Run</a>; this recipe focuses on keeping service ownership explicit.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class VidocPeripheralSession
+{
+    private readonly IBluetoothService bluetooth;
+    private readonly BPeripheral selectedPeripheral;
+    private readonly IPeripheralService peripheral;
+
+    public VidocPeripheralSession(
+        IBluetoothService bluetooth,
+        BPeripheral selectedPeripheral,
+        ILogger logger = null)
+    {
+        this.bluetooth = bluetooth;
+        this.selectedPeripheral = selectedPeripheral;
+        peripheral = Vigram.PeripheralService(selectedPeripheral, logger: logger);
+    }
+
+    public IPeripheralService Peripheral =&gt; peripheral;
+
+    public void Start()
+    {
+        bluetooth.StopScan();
+        bluetooth.Connect(selectedPeripheral);
+
+        peripheral.State = state =&gt; Debug.Log($&quot;Peripheral: {state}&quot;);
+        peripheral.ConfigurationState = state =&gt; Debug.Log($&quot;Configuration: {state.GetType().Name}&quot;);
+        peripheral.Nmea = message =&gt; Debug.Log(message.Raw);
+        peripheral.Start();
+    }
+
+    public void Stop()
+    {
+        bluetooth.Disconnect();
+    }
+}
+</code></pre>
+<p>The session receives the existing <code>IBluetoothService</code>; it does not call <code>Vigram.BluetoothService</code> again. Higher-level UI code can own this class and call <code>Stop()</code> when the session ends.</p>
+<h2 id="subscribe-to-nmea-messages">Subscribe To NMEA Messages</h2>
+<p>Use <code>IPeripheralService.Nmea</code> when the app needs raw NMEA sentences, GGA positions, GST accuracy, or TXT diagnostics. For best SDK behavior, configure the viDoc device to emit NMEA-0183 GGA and GST messages.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class NmeaConsumer
+{
+    private NmeaMessage.Gga latestGga;
+
+    public NmeaMessage.Gga LatestGga =&gt; latestGga;
+
+    public void Attach(IPeripheralService peripheral)
+    {
+        peripheral.Nmea = message =&gt;
+        {
+            switch (message)
+            {
+                case NmeaMessage.Gga gga:
+                    latestGga = gga;
+                    Debug.Log($&quot;GGA: {gga.Coordinate?.Latitude}, {gga.Coordinate?.Longitude}, quality: {gga.Quality}&quot;);
+                    break;
+
+                case NmeaMessage.Gst gst:
+                    Debug.Log($&quot;GST accuracy: H={gst.Accuracy.Horizontal} m, V={gst.Accuracy.Vertical} m&quot;);
+                    break;
+
+                case NmeaMessage.Txt txt:
+                    Debug.Log($&quot;TXT: {txt.Message}&quot;);
+                    break;
+            }
+        };
+    }
+}
+</code></pre>
+<p>Keep the latest <code>NmeaMessage.Gga</code> if the app will create an NTRIP task. NTRIP needs a current position so the caster can return relevant corrections.</p>
+<h2 id="read-device-version-battery-and-capabilities">Read Device Version, Battery, And Capabilities</h2>
+<p>Use this recipe after <code>IPeripheralService.Start()</code> to populate diagnostics UI and to decide whether laser features should be shown.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class DeviceInfoReader
+{
+    public void Attach(IPeripheralService peripheral)
+    {
+        peripheral.CurrentDevice = device =&gt;
+        {
+            Debug.Log($&quot;Device type: {device.TypeOfDevice}&quot;);
+            Debug.Log($&quot;Front laser: {device.HasFrontLaser}&quot;);
+            Debug.Log($&quot;Bottom laser: {device.HasBottomLaser}&quot;);
+            Debug.Log($&quot;Housing: {device.GetHousing}&quot;);
+            Debug.Log($&quot;Mount: {device.GetMount}&quot;);
+
+            if (device.TypeOfDevice == DeviceVersion.ViDocLight)
+            {
+                Debug.Log(&quot;Disable laser controls for viDoc Light.&quot;);
+            }
+
+            if (device.TypeOfDevice == DeviceVersion.ViDocWithOldSoftware)
+            {
+                Debug.LogWarning(&quot;Device software is old. Ask the user to update the device.&quot;);
+            }
+
+            if (device.TypeOfDevice == DeviceVersion.Unknown)
+            {
+                Debug.LogError(&quot;Unsupported viDoc device.&quot;);
+            }
+        };
+
+        peripheral.RequestBattery(battery =&gt;
+            Debug.Log($&quot;Battery: {battery.Percentage}%&quot;));
+
+        peripheral.RequestVersion(version =&gt;
+            Debug.Log($&quot;Hardware: {version.Hardware}, software: {version.Software}&quot;));
+    }
+}
+</code></pre>
+<p>The exact UI decision is application-specific. A common pattern is to hide laser buttons for <code>ViDocLight</code>, show an update warning for old device software, and collect logs for unknown devices.</p>
+<h2 id="handle-device-and-satellite-messages">Handle Device And Satellite Messages</h2>
+<p>Use <code>DeviceMessages</code> when you want one callback for all device-level responses, including measurements, battery, version, IMU, and laser state.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class MessageRouter
+{
+    public void Attach(IPeripheralService peripheral)
+    {
+        peripheral.DeviceMessages = message =&gt;
+        {
+            switch (message)
+            {
+                case DeviceMessage.Battery battery:
+                    Debug.Log($&quot;Battery: {battery.Percentage}%&quot;);
+                    break;
+
+                case DeviceMessage.Version version:
+                    Debug.Log($&quot;Version: {version.Software}&quot;);
+                    break;
+
+                case DeviceMessage.Measurement measurement:
+                    Debug.Log($&quot;Distance: {measurement.Distance} mm, quality: {measurement.Quality}&quot;);
+                    break;
+
+                case DeviceMessage.LaserState laserState:
+                    Debug.Log($&quot;Laser state: {laserState.State}&quot;);
+                    break;
+            }
+        };
+
+        peripheral.SatelliteMessages = message =&gt;
+        {
+            switch (message)
+            {
+                case SatelliteMessage.Dop dop:
+                    Debug.Log($&quot;HDOP: {dop.HorizontalDop}, VDOP: {dop.VerticalDop}&quot;);
+                    break;
+
+                case SatelliteMessage.Pvt pvt:
+                    Debug.Log($&quot;Satellites used: {pvt.SatelliteCount}&quot;);
+                    break;
+
+                case SatelliteMessage.Acknowledge acknowledge:
+                    Debug.Log($&quot;GNSS request acknowledged: {acknowledge.Result}&quot;);
+                    break;
+            }
+        };
+    }
+}
+</code></pre>
+<p>Use typed request callbacks when the app asks for one specific value. Use broad message callbacks when the app needs to monitor the whole session.</p>
+<h2 id="configure-gnss-constellations">Configure GNSS Constellations</h2>
+<p>Use these methods to control which navigation systems are enabled. GPS is treated as the base system and should not be disabled through <code>ChangeStatusGNSS</code>.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class GnssConstellationConfigurator
+{
+    public void Configure(IPeripheralService peripheral)
+    {
+        peripheral.ActivateAllConstellationGNSS();
+
+        peripheral.GetCurrentStatusGNSS(
+            NavigationSystemValue.NavigationSystemType.GALILEO,
+            status =&gt; Debug.Log($&quot;GALILEO enabled: {status.IsEnabled}&quot;));
+
+        peripheral.ChangeStatusGNSS(
+            NavigationSystemValue.NavigationSystemType.GLONASS,
+            activate: true);
+
+        peripheral.ChangeStatusGNSS(
+            NavigationSystemValue.NavigationSystemType.BEIDOU,
+            activate: true);
+    }
+}
+</code></pre>
+<p>Use this in a settings or diagnostics screen. Avoid changing GNSS configuration repeatedly during active measurement unless the product explicitly needs it.</p>
+<h2 id="configure-nav-dop-nav-pvt-elevation-rate-and-dynamic-state">Configure NAV-DOP, NAV-PVT, Elevation, Rate, And Dynamic State</h2>
+<p>The SDK exposes typed helpers for common viDoc GNSS configuration.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class GnssMessageConfigurator
+{
+    public void Configure(IPeripheralService peripheral)
+    {
+        peripheral.ChangeStatusNAVDOP(activate: true);
+        peripheral.ChangeStatusNAVPVT(activate: true);
+
+        peripheral.SetMinimumElevation(ElevationValue.Elevation.Angle10);
+        peripheral.GetCurrentMinimumElevation(elevation =&gt;
+            Debug.Log($&quot;Elevation mask: {elevation.Value}&quot;));
+
+        peripheral.SetChangingRateOfMessages(RateValue.Rate.Hertz7);
+        peripheral.GetChangingRateOfMessages(rate =&gt;
+            Debug.Log($&quot;Message rate: {rate.Value}&quot;));
+
+        peripheral.SetDynamicState(DynamicStateType.Pedestrian);
+        peripheral.GetCurrentDynamicState(state =&gt;
+            Debug.Log($&quot;Dynamic state: {state.Value}&quot;));
+    }
+}
+</code></pre>
+<p>Recommended defaults depend on the app domain. Walking capture workflows usually use <code>DynamicStateType.Pedestrian</code>; fixed installations can use <code>DynamicStateType.Stationary</code>.</p>
+<h2 id="fetch-ntrip-mountpoints">Fetch NTRIP Mountpoints</h2>
+<p>Use <code>INtripService.Mountpoints</code> to present available caster mountpoints to the user or to select one automatically.</p>
+<pre><code class="lang-csharp">using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using ViGram;
+
+public class NtripMountpointLoader
+{
+    private readonly INtripService ntrip;
+
+    public NtripMountpointLoader(INtripService ntrip)
+    {
+        this.ntrip = ntrip;
+    }
+
+    public void Load()
+    {
+        NtripConnectionInformation connection = new(
+            hostname: &quot;caster.example.com&quot;,
+            port: 2101,
+            username: &quot;user&quot;,
+            password: &quot;password&quot;,
+            forceHttpsConnection: true,
+            forceHttpsMountpointsConnection: true);
+
+        ntrip.Mountpoints(
+            connection,
+            actionSuccess: mountpoints =&gt; OnMountpoints(connection, mountpoints),
+            actionFailure: error =&gt; Debug.LogError($&quot;Mountpoint request failed: {error.Message}&quot;));
+    }
+
+    private void OnMountpoints(
+        NtripConnectionInformation connection,
+        List&lt;NtripMountPoint&gt; mountpoints)
+    {
+        IEnumerable&lt;NtripMountPoint&gt; rtcmMountpoints = mountpoints
+            .Where(point =&gt; point.Format.IsRTCM &amp;&amp; point.RequiresNMEA);
+
+        foreach (NtripMountPoint point in rtcmMountpoints)
+        {
+            Debug.Log($&quot;{point.Name} {point.CountryCode} {point.NetworkName}&quot;);
+        }
+    }
+}
+</code></pre>
+<p>Create <code>INtripService</code> once for the NTRIP flow and pass it into helpers like this loader. The viDoc correction flow expects mountpoints that accept NMEA input. Filtering by <code>RequiresNMEA</code> and RTCM-like data formats is a useful first pass, but the final selection still depends on provider rules and field requirements.</p>
+<pre><code class="lang-csharp">INtripService ntrip = Vigram.NtripService;
+NtripMountpointLoader loader = new NtripMountpointLoader(ntrip);
+NtripRunner runner = new NtripRunner(ntrip);
+</code></pre>
+<h2 id="start-an-ntrip-task">Start An NTRIP Task</h2>
+<p>Create the NTRIP task after you have a selected mountpoint and a recent <code>NmeaMessage.Gga</code>.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class NtripRunner
+{
+    private readonly INtripService ntrip;
+
+    public NtripRunner(INtripService ntrip)
+    {
+        this.ntrip = ntrip;
+    }
+
+    public INtripTaskService CreateAndStart(
+        NtripConnectionInformation connection,
+        string mountPoint,
+        NmeaMessage.Gga latestGga)
+    {
+        INtripTaskService task = ntrip.Task(connection, mountPoint, latestGga);
+
+        task.NtripState(state =&gt; Debug.Log(state.Description()));
+
+        Debug.Log($&quot;NTRIP endpoint: {task.Host}:{task.Port}/{task.MountPoint}&quot;);
+
+        task.Data((bytes, error) =&gt;
+        {
+            if (error != null)
+            {
+                Debug.LogError($&quot;Correction stream failed: {error.Message}&quot;);
+                return;
+            }
+
+            Debug.Log($&quot;Correction bytes: {bytes.Length}&quot;);
+        });
+
+        task.Start(
+            actionSuccess: () =&gt; Debug.Log(&quot;NTRIP connected&quot;),
+            actionFailure: error =&gt; Debug.LogError($&quot;NTRIP connection failed: {error.Message}&quot;));
+
+        return task;
+    }
+
+    public void UpdatePosition(INtripTaskService task, NmeaMessage.Gga latestGga)
+    {
+        task.SetGga(latestGga);
+    }
+}
+</code></pre>
+<p>Keep the returned <code>INtripTaskService</code> for the active correction stream. Call <code>Disconnect()</code> on that same instance when the session ends. If the app moves significantly, keep the NTRIP task updated with fresh GGA messages.</p>
+<p>Mountpoint discovery uses HTTPS when <code>forceHttpsMountpointsConnection</code> is enabled or the hostname starts with <code>https://</code>. Otherwise the SDK reads the sourcetable over the caster TCP port. Correction streams use TLS when <code>forceHttpsConnection</code> is enabled.</p>
+<h2 id="start-gps-with-automatic-ntrip-reconnect">Start GPS With Automatic NTRIP Reconnect</h2>
+<p>Use <code>IGPSService</code> when you want one service to combine corrected location data, NTRIP state, correction status, and disconnect signals.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class GpsRunner
+{
+    private IGPSService gps;
+
+    public void StartGps(
+        IPeripheralService peripheral,
+        IBluetoothService bluetooth,
+        INtripTaskService ntripTask)
+    {
+        gps = Vigram.GPSService(
+            peripheral,
+            bluetooth,
+            ntripTask,
+            automaticallyReconnectNtrip: true);
+
+        gps.Coordinate(coordinate =&gt;
+        {
+            if (coordinate.HasValue)
+            {
+                Debug.Log($&quot;{coordinate.Value.Latitude}, {coordinate.Value.Longitude}&quot;);
+            }
+        });
+
+        gps.TimestampedCoordinate((timestamp, coordinate) =&gt;
+            Debug.Log($&quot;{timestamp:o}: {coordinate.Latitude}, {coordinate.Longitude}&quot;));
+
+        gps.HorizontalAccuracy(value =&gt; Debug.Log($&quot;Horizontal accuracy: {value} m&quot;));
+        gps.VerticalAccuracy(value =&gt; Debug.Log($&quot;Vertical accuracy: {value} m&quot;));
+        gps.Quality(quality =&gt; Debug.Log($&quot;GPS quality: {quality}&quot;));
+        gps.Hdop(hdop =&gt; Debug.Log($&quot;HDOP: {hdop}&quot;));
+        gps.IsCorrecting(isCorrecting =&gt; Debug.Log($&quot;Correcting: {isCorrecting}&quot;));
+
+        gps.ShouldDisconnect(signal =&gt;
+            Debug.LogWarning($&quot;GPS disconnect reason: {signal.DisconnectReason}&quot;));
+
+        gps.Start(state =&gt; Debug.Log(state.Description()));
+    }
+
+    public void Reconnect()
+    {
+        gps?.Reconnect();
+    }
+}
+</code></pre>
+<p>Keep the <code>IGPSService</code> instance for the active GPS session. With <code>automaticallyReconnectNtrip: true</code>, the SDK retries NTRIP after a correction stream disruption. Use <code>ShouldDisconnect</code> to switch the UI into a recoverable state when application action is needed. For example, show a reconnect button for <code>NtripDisrupted</code>, ask the user to move into better GNSS conditions for <code>InvalidGnssPosition</code>, or restart discovery for <code>DeviceNotFound</code>.</p>
+<h2 id="record-a-laser-measurement">Record A Laser Measurement</h2>
+<p>Use <code>ILaserService.Record</code> for a measurement session. Use device capabilities to hide laser UI on viDoc Light.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class LaserMeasurementRunner
+{
+    private readonly ILaserService laser;
+
+    public LaserMeasurementRunner(IPeripheralService peripheral)
+    {
+        laser = Vigram.LaserService(peripheral);
+    }
+
+    public void Measure()
+    {
+        laser.GetLasersStatus(state =&gt;
+            Debug.Log($&quot;Laser status: {state.State}&quot;));
+
+        LaserConfiguration configuration = new(
+            shotMode: LaserConfiguration.ShotMode.Auto,
+            position: LaserConfiguration.Position.Bottom,
+            duration: 10);
+
+        laser.Record(
+            configuration,
+            actionSuccess: measurement =&gt;
+            {
+                Debug.Log($&quot;Distance: {measurement.Distance} mm&quot;);
+                Debug.Log($&quot;Quality: {measurement.Quality} ({measurement.QualityRaw})&quot;);
+            },
+            actionFailure: error =&gt; Debug.LogError($&quot;Laser measurement failed: {error.Message}&quot;));
+    }
+}
+</code></pre>
+<p>Create one <code>ILaserService</code> for the peripheral session and reuse it for status, on/off commands, and recording. For protocol version <code>1.0</code>, laser duration is clamped to the supported range of 5 to 60 seconds.</p>
+<h2 id="turn-a-laser-on-or-off">Turn A Laser On Or Off</h2>
+<p>Use explicit laser state control only when your UI needs it. Measurement sessions can often rely on <code>Record</code>.</p>
+<pre><code class="lang-csharp">// Reuse the ILaserService that belongs to this peripheral session.
+laser.TurnLaserOn(LaserConfiguration.Position.Bottom);
+laser.TurnLaserOff(LaserConfiguration.Position.Bottom);
+</code></pre>
+<p>Front laser controls should be shown only when <code>CurrentDevice</code> reports <code>HasFrontLaser</code>.</p>
+<h2 id="request-imu-data">Request IMU Data</h2>
+<p>Use IMU requests for diagnostics or orientation-related workflows.</p>
+<pre><code class="lang-csharp">using UnityEngine;
+using ViGram;
+
+public class ImuReader
+{
+    public void Read(IPeripheralService peripheral)
+    {
+        peripheral.RequestIMUAngle(angle =&gt;
+            Debug.Log($&quot;Nick: {angle.NickAngle}, roll: {angle.RollAngle}&quot;));
+
+        peripheral.RequestIMURotation(rotation =&gt;
+            Debug.Log($&quot;Nick rate: {rotation.NickRate}, roll rate: {rotation.RollRate}, yaw rate: {rotation.YawRate}&quot;));
+
+        peripheral.RequestIMUCalibrationStatus(status =&gt;
+            Debug.Log($&quot;IMU calibration count: {status.Times}&quot;));
+    }
+}
+</code></pre>
+<p>Only expose calibration actions in UI if the product has a clear calibration workflow for the user.</p>
+<h2 id="log-a-full-session">Log A Full Session</h2>
+<p>Use a logger when debugging field issues, validating NTRIP behavior, or collecting support data. Create the logger once before creating the logged peripheral service.</p>
+<pre><code class="lang-csharp">using System.IO;
+using UnityEngine;
+using ViGram;
+
+public class LoggedSessionFactory
+{
+    public IPeripheralService Create(BPeripheral selectedPeripheral)
+    {
+        string file = Path.Combine(Application.persistentDataPath, &quot;vidoc-session.csv&quot;);
+        ILogger logger = Vigram.LoggerService(file);
+
+        return Vigram.PeripheralService(selectedPeripheral, logger: logger);
+    }
+}
+</code></pre>
+<p>Attach the logger before <code>Start()</code> to capture startup and configuration messages. Treat logs as support data: define retention, upload, and deletion behavior in the host application.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

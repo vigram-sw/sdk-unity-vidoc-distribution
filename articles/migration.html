@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Migration To 1.0.0 | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Migration To 1.0.0 | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="migration-to-100">Migration To 1.0.0</h1>
+
+<p>Version <code>1.0.0</code> is a major update. According to the package changelog and current source, it adds Android support, HTTPS NTRIP options, explicit NTRIP callbacks, structured GPS disconnect notifications, GPS reconnect controls, optional token initialization, iOS privacy metadata, and binary distribution changes.</p>
+<h2 id="main-breaking-changes">Main Breaking Changes</h2>
+<table>
+<thead>
+<tr>
+<th>Before 1.0.0</th>
+<th>In 1.0.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interfaces without the <code>I</code> prefix</td>
+<td><code>IBluetoothService</code>, <code>IPeripheralService</code>, <code>IGPSService</code>, <code>INtripService</code></td>
+</tr>
+<tr>
+<td>Old package identifiers such as <code>com.vigram.sdk-gh1</code></td>
+<td><code>com.vigram.sdk</code></td>
+</tr>
+<tr>
+<td>lowerCamelCase methods and properties</td>
+<td>PascalCase API</td>
+</tr>
+<tr>
+<td><code>Vigram.Init(token)</code></td>
+<td><code>Vigram.Initial()</code> or <code>Vigram.Initial(token)</code></td>
+</tr>
+<tr>
+<td><code>Vigram.bluetoothService</code></td>
+<td><code>Vigram.BluetoothService</code></td>
+</tr>
+<tr>
+<td><code>bluetooth.startScan()</code></td>
+<td><code>bluetooth.StartScan()</code></td>
+</tr>
+<tr>
+<td><code>bluetooth.connect(peripheral)</code></td>
+<td><code>bluetooth.Connect(peripheral)</code></td>
+</tr>
+<tr>
+<td><code>Vigram.peripheralService(peripheral)</code></td>
+<td><code>Vigram.PeripheralService(peripheral)</code></td>
+</tr>
+<tr>
+<td><code>peripheral.start()</code></td>
+<td><code>peripheral.Start()</code></td>
+</tr>
+<tr>
+<td>Method-style NMEA callbacks</td>
+<td>Assign <code>IPeripheralService.Nmea</code></td>
+</tr>
+<tr>
+<td><code>Vigram.gpsService(peripheral, ntripTask)</code></td>
+<td><code>Vigram.GPSService(peripheral, bluetoothService, ntripTask, automaticallyReconnectNtrip)</code></td>
+</tr>
+<tr>
+<td>NTRIP <code>Start()</code> without handshake result</td>
+<td><code>Start(actionSuccess, actionFailure)</code></td>
+</tr>
+<tr>
+<td>NTRIP data callback without an error channel</td>
+<td><code>Data(Action&lt;byte[], Exception&gt;)</code></td>
+</tr>
+<tr>
+<td>NTRIP task diagnostics unavailable</td>
+<td><code>Host</code>, <code>Port</code>, and <code>MountPoint</code> properties</td>
+</tr>
+<tr>
+<td>No separate HTTPS switches</td>
+<td><code>forceHttpsConnection</code> and <code>forceHttpsMountpointsConnection</code></td>
+</tr>
+<tr>
+<td>Separate <code>GGAMessage</code>, <code>GSTMessage</code>, <code>TXTMessage</code> types</td>
+<td><code>NmeaMessage.Gga</code>, <code>NmeaMessage.Gst</code>, <code>NmeaMessage.Txt</code></td>
+</tr>
+<tr>
+<td>NAV-DOP/NAV-PVT methods with callbacks</td>
+<td><code>ChangeStatusNAVDOP(bool)</code> and <code>ChangeStatusNAVPVT(bool)</code></td>
+</tr>
+<tr>
+<td>iOS package without privacy manifest metadata</td>
+<td><code>Runtime/Plugins/iOS/PrivacyInfo.xcprivacy</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="renaming-example">Renaming Example</h2>
+<pre><code class="lang-csharp">// 1.0.0
+IAuthenticationService authentication = Vigram.Initial(&quot;YOUR_SDK_TOKEN&quot;);
+IBluetoothService bluetooth = Vigram.BluetoothService;
+IPeripheralService peripheral = Vigram.PeripheralService(selectedPeripheral);
+INtripService ntrip = Vigram.NtripService;
+ILaserService laser = Vigram.LaserService(peripheral);
+</code></pre>
+<p>Create these services once for the owning session and pass the instances around. <code>Vigram.BluetoothService</code>, <code>Vigram.NtripService</code>, <code>Vigram.LaserService(...)</code>, and the other service factories do not return shared singletons.</p>
+<p>If the app does not need token-based authorization, initialize without a token:</p>
+<pre><code class="lang-csharp">IAuthenticationService authentication = Vigram.Initial();
+</code></pre>
+<p>When viGram provides an SDK token, keep passing it before scanning and connecting.</p>
+<h2 id="nmea-handling">NMEA Handling</h2>
+<pre><code class="lang-csharp">peripheral.Nmea = message =&gt;
+{
+    if (message is NmeaMessage.Gga gga)
+    {
+        ntripTask.SetGga(gga);
+    }
+};
+</code></pre>
+<h2 id="gps-service-creation">GPS Service Creation</h2>
+<p><code>IGPSService</code> now needs the Bluetooth service as well as the peripheral and NTRIP task.</p>
+<pre><code class="lang-csharp">IGPSService gps = Vigram.GPSService(
+    peripheral,
+    bluetooth,
+    ntripTask,
+    automaticallyReconnectNtrip: true);
+</code></pre>
+<h2 id="ntrip-error-handling">NTRIP Error Handling</h2>
+<p>Always wire both startup callbacks and the correction data error channel.</p>
+<pre><code class="lang-csharp">ntripTask.Data((bytes, error) =&gt;
+{
+    if (error != null)
+    {
+        Debug.LogError(error.Message);
+        return;
+    }
+
+    Debug.Log(bytes.Length);
+});
+
+ntripTask.Start(
+    actionSuccess: () =&gt; Debug.Log(&quot;NTRIP connected&quot;),
+    actionFailure: error =&gt; Debug.LogError(error.Message));
+</code></pre>
+<h2 id="gps-disconnect-reasons">GPS Disconnect Reasons</h2>
+<p><code>IGPSService.ShouldDisconnect</code> reports:</p>
+<ul>
+<li><code>ConfigurationFailed</code>;</li>
+<li><code>DeviceNotFound</code>;</li>
+<li><code>NtripDisrupted</code>;</li>
+<li><code>InvalidGnssPosition</code>.</li>
+</ul>
+<p>Use this callback for user-facing reconnect UI, diagnostics, and support logs.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

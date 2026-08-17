@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>SDK Scope | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="SDK Scope | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="sdk-scope">SDK Scope</h1>
+
+<h2 id="package-scope">Package Scope</h2>
+<p>The SDK is distributed as a Unity package located at <code>Packages/com.vigram.sdk</code>. It is intended to be added to an existing Unity mobile application, not opened as a standalone Unity sample project.</p>
+<p>SDK version <code>1.0.0</code> targets mobile Unity applications on iOS and Android. It wraps Bluetooth LE transport, viDoc peripheral protocol handling, GNSS/NMEA models, NTRIP correction streams, laser measurements, device motion, file logging, and optional SDK token initialization.</p>
+<h2 id="confirmed-package-targets">Confirmed Package Targets</h2>
+<ul>
+<li>Minimum Unity version: <code>2021.3</code>.</li>
+<li>Package name: <code>com.vigram.sdk</code>.</li>
+<li>Target platforms: <code>iOS</code>, <code>Android</code>.</li>
+<li>Runtime assemblies: <code>ViGram</code> and <code>ServicesAssembly</code>.</li>
+<li><code>ViGram.asmdef</code> references the precompiled <code>VigramAuthenticityVerificator.dll</code>.</li>
+<li>The Android plugin includes BLE permissions and <code>BluetoothLE.androidlib</code>.</li>
+<li>The iOS package includes native Bluetooth/Motion plugins and <code>PrivacyInfo.xcprivacy</code>.</li>
+<li>The iOS post-build processor adds <code>NSBluetoothAlwaysUsageDescription</code>.</li>
+<li>The public <code>1.0.0</code> API uses PascalCase members and interface names with the <code>I</code> prefix.</li>
+<li><code>Vigram.Initial()</code> can be called without a token.</li>
+<li><code>Vigram.Initial(token)</code> can be used when viGram provides an SDK token for the integration.</li>
+<li>NTRIP in <code>1.0.0</code> has explicit success/failure callbacks for connection startup and an error channel for correction data.</li>
+<li><code>NtripConnectionInformation</code> exposes separate force-HTTPS flags for correction streams and mountpoint discovery.</li>
+<li>NTRIP mountpoint discovery supports HTTPS and classic raw TCP sourcetable reads.</li>
+<li><code>IGPSService</code> is created with both <code>IPeripheralService</code> and <code>IBluetoothService</code>.</li>
+<li><code>IGPSService</code> exposes <code>ShouldDisconnect</code>, <code>Reconnect()</code>, and <code>automaticallyReconnectNtrip</code>.</li>
+<li>Peripheral configuration reports explicit failure/error states, including connection loss during configuration.</li>
+</ul>
+<h2 id="main-api-surface">Main API Surface</h2>
+<p>Application integrations normally work with these public entry points:</p>
+<ul>
+<li><code>Vigram</code> factories.</li>
+<li><code>IAuthenticationService</code> and <code>AuthenticationResult</code>.</li>
+<li><code>IBluetoothService</code>, <code>BPeripheral</code>, and <code>CBManagerState</code>.</li>
+<li><code>IPeripheralService</code> callbacks and high-level request methods.</li>
+<li><code>NmeaMessage</code>, <code>DeviceMessage</code>, <code>SatelliteMessage</code>, and related public value types.</li>
+<li><code>INtripService</code> and <code>INtripTaskService</code>.</li>
+<li><code>IGPSService</code>.</li>
+<li><code>ILaserService</code> and <code>LaserConfiguration</code>.</li>
+<li><code>IDeviceService</code>.</li>
+<li><code>ILogger</code>.</li>
+</ul>
+<h2 id="integration-assumptions">Integration Assumptions</h2>
+<ul>
+<li>SDK tokens are issued by an external viGram process. The package source does not include a public token issuance flow.</li>
+<li>Apps that receive an SDK token from viGram should pass it before scanning and connecting.</li>
+<li>Production apps should depend on an immutable version tag such as <code>1.0.0</code>.</li>
+<li>Device selection UI is application-specific. SDK examples should show how to receive <code>BPeripheral</code> values, not prescribe a UI framework.</li>
+<li>Some runtime behavior, such as platform permission prompts, depends on Unity project settings and target OS versions.</li>
+</ul>
+<h2 id="content-architecture">Content Architecture</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Purpose</th>
+<th>Primary reader</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overview</td>
+<td>Understand what the SDK does</td>
+<td>New developer</td>
+</tr>
+<tr>
+<td>Installation And First Run</td>
+<td>Install the package and run the first scan</td>
+<td>Integrator</td>
+</tr>
+<tr>
+<td>SDK Architecture</td>
+<td>Understand package layers and lifecycle</td>
+<td>Integrator</td>
+</tr>
+<tr>
+<td>Core Services</td>
+<td>Find the correct public service and callback</td>
+<td>App developer</td>
+</tr>
+<tr>
+<td>Practical Recipes</td>
+<td>Copy integration patterns for common tasks</td>
+<td>Integrator</td>
+</tr>
+<tr>
+<td>Platforms And Build</td>
+<td>Validate iOS/Android requirements</td>
+<td>Mobile developer</td>
+</tr>
+<tr>
+<td>Migration To 1.0.0</td>
+<td>Move from older naming and signatures</td>
+<td>Existing integration owner</td>
+</tr>
+<tr>
+<td>Troubleshooting</td>
+<td>Diagnose Bluetooth, peripheral, NTRIP, GPS, and laser failures</td>
+<td>QA / developer</td>
+</tr>
+<tr>
+<td>API Reference</td>
+<td>Inspect exact generated public types</td>
+<td>All developers</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

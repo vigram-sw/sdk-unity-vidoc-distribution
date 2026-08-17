@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Troubleshooting | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Troubleshooting | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="troubleshooting">Troubleshooting</h1>
+
+<h2 id="authentication-fails">Authentication Fails</h2>
+<p>Check the <code>AuthenticationResult.Error</code> value and message.</p>
+<pre><code class="lang-csharp">Vigram.Initial(&quot;YOUR_SDK_TOKEN&quot;).Check(result =&gt;
+{
+    if (result is AuthenticationResult.Error error)
+    {
+        Debug.LogError($&quot;{error.Enum}: {error.Message}&quot;);
+    }
+});
+</code></pre>
+<p>Common causes:</p>
+<ul>
+<li>the token is missing when the integration expects token-based authorization;</li>
+<li>the token does not match the application bundle/package;</li>
+<li>the SDK was deactivated;</li>
+<li>offline authorization is missing or expired;</li>
+<li>the device has no connectivity when a fresh online check is required.</li>
+</ul>
+<p><code>Vigram.Initial()</code> without a token is valid when the integration does not use an issued SDK token. If viGram provides a token, pass it during initialization before scanning and connecting.</p>
+<h2 id="bluetooth-scan-finds-no-devices">Bluetooth Scan Finds No Devices</h2>
+<p>Check:</p>
+<ul>
+<li><code>IBluetoothService.State</code>;</li>
+<li>Android runtime Bluetooth and location permissions;</li>
+<li>the generated iOS <code>NSBluetoothAlwaysUsageDescription</code>;</li>
+<li>that the app is running on a physical iOS or Android device;</li>
+<li>that the viDoc device is powered on and close enough;</li>
+<li>that scanning is not stopped immediately by app lifecycle code;</li>
+<li>that the UI is using the latest list from <code>ObserveAvailableDevices</code>.</li>
+</ul>
+<pre><code class="lang-csharp">bluetooth.State(state =&gt; Debug.Log($&quot;Bluetooth state: {state}&quot;));
+bluetooth.ObserveAvailableDevices(devices =&gt; Debug.Log($&quot;Device count: {devices.Count}&quot;));
+bluetooth.StartScan();
+</code></pre>
+<h2 id="peripheral-does-not-configure">Peripheral Does Not Configure</h2>
+<p>Subscribe to <code>IPeripheralService.ConfigurationState</code>, <code>State</code>, and <code>Debug</code> before calling <code>Start()</code>.</p>
+<pre><code class="lang-csharp">peripheral.State = state =&gt; Debug.Log($&quot;Peripheral: {state}&quot;);
+peripheral.ConfigurationState = state =&gt; Debug.Log($&quot;Configuration: {state.GetType().Name}&quot;);
+peripheral.Debug = message =&gt; Debug.Log(message);
+peripheral.Start();
+</code></pre>
+<p>Typical causes include Bluetooth disconnects, unsupported device version, old device software, denied access, write timeouts, or configuration values that are not supported by the connected device.</p>
+<p>For detailed diagnostics, inspect <code>StatePeripheralConfiguration.Error</code> and <code>StatePeripheralConfiguration.Failed</code>. The <code>Value</code> can contain errors such as <code>ConnectionLostDuringConfiguration</code>, <code>VerificationFailure</code>, <code>WriteTimeOut</code>, <code>DeviceNumberIsIncompatible</code>, <code>DeviceSoftwareIsIncompatible</code>, <code>SdkIsOutdated</code>, <code>AccessDenied</code>, or <code>RequestIsNotSupported</code>.</p>
+<p>If configuration reports an authentication or verification error, initialize with the issued SDK token before scanning:</p>
+<pre><code class="lang-csharp">Vigram.Initial(&quot;YOUR_SDK_TOKEN&quot;).Check(OnAuthenticated);
+</code></pre>
+<h2 id="no-nmea-gga-or-gst-messages-arrive">No NMEA GGA Or GST Messages Arrive</h2>
+<p>Check:</p>
+<ul>
+<li><code>IPeripheralService.Start()</code> was called after Bluetooth connect;</li>
+<li><code>Nmea</code> was assigned before or immediately after startup;</li>
+<li>viDoc is configured to emit NMEA-0183 GGA and GST;</li>
+<li>the device has enough GNSS visibility;</li>
+<li>logs contain incoming NMEA or satellite messages.</li>
+</ul>
+<pre><code class="lang-csharp">peripheral.Nmea = message =&gt; Debug.Log(message.Raw);
+</code></pre>
+<p>Without a recent <code>NmeaMessage.Gga</code>, the application cannot create a useful NTRIP task.</p>
+<h2 id="ntrip-mountpoint-loading-fails">NTRIP Mountpoint Loading Fails</h2>
+<p>Use both success and failure callbacks.</p>
+<pre><code class="lang-csharp">INtripService ntrip = Vigram.NtripService;
+
+ntrip.Mountpoints(
+    connection,
+    actionSuccess: points =&gt; Debug.Log(points.Count),
+    actionFailure: error =&gt; Debug.LogError(error.Message));
+</code></pre>
+<p>Check host, port, username, password, HTTPS flags, network availability, and provider access rules. Some providers require HTTPS for mountpoint discovery or correction streams.</p>
+<p>If HTTPS mountpoint discovery fails against a caster that only supports classic NTRIP sourcetable access, try <code>forceHttpsMountpointsConnection: false</code> and use the raw caster port. If the provider requires TLS, keep <code>forceHttpsMountpointsConnection: true</code>.</p>
+<h2 id="ntrip-does-not-connect">NTRIP Does Not Connect</h2>
+<p>Wire <code>NtripState</code>, <code>Start(actionSuccess, actionFailure)</code>, and <code>Data</code>.</p>
+<pre><code class="lang-csharp">ntripTask.NtripState(state =&gt; Debug.Log(state.Description()));
+ntripTask.Data((bytes, error) =&gt;
+{
+    if (error != null)
+    {
+        Debug.LogError(error.Message);
+    }
+});
+ntripTask.Start(
+    actionSuccess: () =&gt; Debug.Log(&quot;Connected&quot;),
+    actionFailure: error =&gt; Debug.LogError(error.Message));
+</code></pre>
+<p>Check:</p>
+<ul>
+<li>the selected mountpoint name;</li>
+<li>credentials;</li>
+<li>the <code>Host</code>, <code>Port</code>, and <code>MountPoint</code> exposed by the task;</li>
+<li>whether the mountpoint requires NMEA input;</li>
+<li>whether the initial <code>NmeaMessage.Gga</code> is recent;</li>
+<li>whether the server returns <code>UNAUTHORIZED</code>, <code>MOUNTPOINT_NOT_FOUND</code>, <code>TIMEOUT</code>, or <code>BAD_RESPONSE</code>.</li>
+</ul>
+<h2 id="correction-stream-stops">Correction Stream Stops</h2>
+<p>In <code>1.0.0</code>, correction stream errors arrive as the second argument of <code>Data</code>.</p>
+<pre><code class="lang-csharp">ntripTask.Data((bytes, error) =&gt;
+{
+    if (error != null)
+    {
+        Debug.LogError(error.Message);
+        return;
+    }
+
+    Debug.Log($&quot;Correction bytes: {bytes.Length}&quot;);
+});
+</code></pre>
+<p>If <code>IGPSService</code> is created with <code>automaticallyReconnectNtrip: true</code>, the SDK attempts reconnect after at least one successful NTRIP connection. Use <code>ShouldDisconnect</code> to update UI and logs.</p>
+<h2 id="gps-reports-a-disconnect-signal">GPS Reports A Disconnect Signal</h2>
+<p><code>IGPSService.ShouldDisconnect</code> can report:</p>
+<ul>
+<li><code>ConfigurationFailed</code>;</li>
+<li><code>DeviceNotFound</code>;</li>
+<li><code>NtripDisrupted</code>;</li>
+<li><code>InvalidGnssPosition</code>.</li>
+</ul>
+<p>Use the reason to choose a recovery path.</p>
+<pre><code class="lang-csharp">gps.ShouldDisconnect(signal =&gt;
+{
+    switch (signal.DisconnectReason)
+    {
+        case GPSDisconnectSignal.Reason.NtripDisrupted:
+            Debug.LogWarning(&quot;Show NTRIP reconnect UI.&quot;);
+            break;
+
+        case GPSDisconnectSignal.Reason.InvalidGnssPosition:
+            Debug.LogWarning(&quot;Ask the user to move to better GNSS visibility.&quot;);
+            break;
+
+        default:
+            Debug.LogWarning(signal.DisconnectReason);
+            break;
+    }
+});
+</code></pre>
+<h2 id="laser-measurement-fails">Laser Measurement Fails</h2>
+<p>Check:</p>
+<ul>
+<li>the connected device is not <code>DeviceVersion.ViDocLight</code>;</li>
+<li><code>CurrentDevice</code> reports the requested laser position as available;</li>
+<li>the selected <code>LaserConfiguration.Position</code> is valid for the device;</li>
+<li>duration is finite and within the supported range;</li>
+<li><code>actionFailure</code> is logged;</li>
+<li>the device is not busy with another operation.</li>
+</ul>
+<pre><code class="lang-csharp">laser.Record(
+    configuration,
+    actionSuccess: measurement =&gt; Debug.Log(measurement.Distance),
+    actionFailure: error =&gt; Debug.LogError(error.Message));
+</code></pre>
+<p>For protocol version <code>1.0</code>, laser duration is clamped to 5-60 seconds.</p>
+<h2 id="logs">Logs</h2>
+<p>Pass an <code>ILogger</code> into <code>PeripheralService</code> before startup. See <a href="recipes.html#log-a-full-session">Log A Full Session</a> for the setup pattern.</p>
+<p>If a path is relative, the SDK writes under <code>Application.persistentDataPath</code>. On Android, use the <code>android-documents://</code> scheme when the app needs to write into the Documents directory.</p>
+<p>Logs are especially useful for support cases involving authentication, scan/connect, peripheral configuration, NMEA availability, NTRIP state, and laser measurement failures.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

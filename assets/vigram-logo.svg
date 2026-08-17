@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">viGram mark</title>
+  <desc id="desc">Circular viGram v mark.</desc>
+  <circle cx="32" cy="32" r="28" fill="#fff"/>
+  <circle cx="32" cy="32" r="25" fill="none" stroke="#111" stroke-width="4"/>
+  <circle cx="43.5" cy="22.5" r="4.5" fill="#111"/>
+  <path fill="#111" d="M18.5 29.3c-.7-1.7.5-3.5 2.3-3.5h7.1c1 0 1.9.6 2.3 1.5l5.1 11.1 5.4-17.1h8.5L40.1 45c-.4 1-1.3 1.6-2.4 1.6h-7.1c-1 0-1.9-.6-2.3-1.5L18.5 29.3z"/>
+</svg>

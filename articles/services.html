@@ -1,0 +1,574 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Core Services | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Core Services | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="core-services">Core Services</h1>
+
+<h2 id="vigram"><code>Vigram</code></h2>
+<p><code>Vigram</code> is the public static factory surface. Most members below create new service objects; they are not singleton accessors. Store returned services in fields owned by your session, screen, or coordinator and pass those same instances to dependent components.</p>
+<table>
+<thead>
+<tr>
+<th>Factory</th>
+<th>Returns</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Initial(string? token = null)</code></td>
+<td><code>IAuthenticationService</code></td>
+<td>Initialize optional SDK authorization</td>
+</tr>
+<tr>
+<td><code>TokenIsValid</code></td>
+<td><code>AuthenticationResult</code></td>
+<td>Read the cached authentication result</td>
+</tr>
+<tr>
+<td><code>BluetoothService</code></td>
+<td><code>IBluetoothService</code></td>
+<td>Bluetooth LE scan, connect, and disconnect</td>
+</tr>
+<tr>
+<td><code>PeripheralService(...)</code></td>
+<td><code>IPeripheralService</code></td>
+<td>viDoc protocol, messages, requests, and configuration</td>
+</tr>
+<tr>
+<td><code>NtripService</code></td>
+<td><code>INtripService</code></td>
+<td>Mountpoint discovery and NTRIP task creation</td>
+</tr>
+<tr>
+<td><code>GPSService(...)</code></td>
+<td><code>IGPSService</code></td>
+<td>GPS aggregation, NTRIP state, correction state, reconnect signals</td>
+</tr>
+<tr>
+<td><code>LaserService(IPeripheralService)</code></td>
+<td><code>ILaserService</code></td>
+<td>Laser state and distance measurements</td>
+</tr>
+<tr>
+<td><code>DeviceService()</code></td>
+<td><code>IDeviceService</code></td>
+<td>Unity device motion updates</td>
+</tr>
+<tr>
+<td><code>LoggerService(string filename)</code></td>
+<td><code>ILogger</code></td>
+<td>File logging for SDK events</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended lifetime model:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Typical owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IAuthenticationService</code></td>
+<td>Startup/authentication flow</td>
+</tr>
+<tr>
+<td><code>IBluetoothService</code></td>
+<td>One active viDoc session or device picker screen</td>
+</tr>
+<tr>
+<td><code>IPeripheralService</code></td>
+<td>One selected <code>BPeripheral</code> session</td>
+</tr>
+<tr>
+<td><code>INtripService</code></td>
+<td>Session object or NTRIP configuration screen</td>
+</tr>
+<tr>
+<td><code>INtripTaskService</code></td>
+<td>One selected NTRIP mountpoint/correction stream</td>
+</tr>
+<tr>
+<td><code>IGPSService</code></td>
+<td>One corrected GPS session</td>
+</tr>
+<tr>
+<td><code>ILaserService</code></td>
+<td>One peripheral session that exposes laser UI</td>
+</tr>
+<tr>
+<td><code>IDeviceService</code></td>
+<td>One motion-observation owner</td>
+</tr>
+<tr>
+<td><code>ILogger</code></td>
+<td>One logged session/file</td>
+</tr>
+</tbody>
+</table>
+<h2 id="iauthenticationservice"><code>IAuthenticationService</code></h2>
+<p>Use <code>Vigram.Initial().Check(...)</code> before Bluetooth, peripheral, NTRIP, GPS, or laser work. Pass a token when viGram provides one for the integration.</p>
+<pre><code class="lang-csharp">Vigram.Initial().Check(result =&gt;
+{
+    if (result is AuthenticationResult.Success)
+    {
+        Debug.Log(&quot;Authorized&quot;);
+    }
+
+    if (result is AuthenticationResult.Error error)
+    {
+        Debug.LogError($&quot;Auth failed: {error.Enum} {error.Message}&quot;);
+    }
+});
+</code></pre>
+<p>When using an issued SDK token, pass it during initialization:</p>
+<pre><code class="lang-csharp">Vigram.Initial(&quot;YOUR_SDK_TOKEN&quot;).Check(result =&gt;
+{
+    if (result is AuthenticationResult.Error error)
+    {
+        Debug.LogError($&quot;Auth failed: {error.Enum} {error.Message}&quot;);
+    }
+});
+</code></pre>
+<p>Token failures are represented by <code>AuthenticationError</code> during SDK initialization and by peripheral configuration errors during device startup. Keep the token in application configuration or secure storage according to the host app's security model.</p>
+<h2 id="ibluetoothservice"><code>IBluetoothService</code></h2>
+<p>Owns Bluetooth state, scanning, available <code>BPeripheral</code> updates, connection, and disconnection.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>State(...)</code></td>
+<td>Observe platform Bluetooth availability</td>
+</tr>
+<tr>
+<td><code>ObserveAvailableDevices(...)</code></td>
+<td>Receive the current viDoc candidate list</td>
+</tr>
+<tr>
+<td><code>StartScan()</code></td>
+<td>Start scanning</td>
+</tr>
+<tr>
+<td><code>StopScan()</code></td>
+<td>Stop scanning and clear available devices</td>
+</tr>
+<tr>
+<td><code>Connect(BPeripheral)</code></td>
+<td>Connect to the selected device</td>
+</tr>
+<tr>
+<td><code>Disconnect()</code></td>
+<td>Disconnect the active device</td>
+</tr>
+</tbody>
+</table>
+<p>Create one <code>IBluetoothService</code> for a viDoc session and reuse it for scanning, connecting, GPS service creation, and cleanup. Calling <code>Vigram.BluetoothService</code> again creates another service instance.</p>
+<h2 id="bperipheral"><code>BPeripheral</code></h2>
+<p><code>BPeripheral</code> identifies a discovered viDoc device.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Name</code></td>
+<td>Display name received from Bluetooth discovery</td>
+</tr>
+<tr>
+<td><code>SerialNumber</code></td>
+<td>Serial-like value derived from the device name</td>
+</tr>
+</tbody>
+</table>
+<h2 id="iperipheralservice"><code>IPeripheralService</code></h2>
+<p>Main viDoc protocol service. It receives parsed NMEA, device, and satellite messages and sends high-level requests to the connected device.</p>
+<p>Important callbacks:</p>
+<table>
+<thead>
+<tr>
+<th>Callback</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Nmea</code></td>
+<td>Receive <code>NmeaMessage.Gga</code>, <code>NmeaMessage.Gst</code>, and <code>NmeaMessage.Txt</code></td>
+</tr>
+<tr>
+<td><code>CurrentDevice</code></td>
+<td>Receive parsed viDoc model/capability information</td>
+</tr>
+<tr>
+<td><code>DeviceMessages</code></td>
+<td>Receive battery, version, measurement, IMU, laser state, and other device messages</td>
+</tr>
+<tr>
+<td><code>SatelliteMessages</code></td>
+<td>Receive GNSS configuration and satellite responses</td>
+</tr>
+<tr>
+<td><code>State</code></td>
+<td>Observe connected/disconnected peripheral state</td>
+</tr>
+<tr>
+<td><code>ConfigurationState</code></td>
+<td>Observe startup configuration progress, completion, recoverable errors, and terminal failures</td>
+</tr>
+<tr>
+<td><code>ViDocState</code></td>
+<td>Receive viDoc warning/error/notice/user state messages</td>
+</tr>
+<tr>
+<td><code>ViDocResetState</code></td>
+<td>Observe reset progress</td>
+</tr>
+<tr>
+<td><code>PpkMeasurementsState</code></td>
+<td>Observe PPK measurement state</td>
+</tr>
+<tr>
+<td><code>Debug</code></td>
+<td>Receive SDK diagnostic messages during integration</td>
+</tr>
+</tbody>
+</table>
+<p><code>ConfigurationState</code> reports <code>StatePeripheralConfiguration.InProgress</code>, <code>Done</code>, <code>Error</code>, or <code>Failed</code>. Error values are exposed as <code>PeripheralError</code> types, including verification failures, connection loss during configuration, write timeouts, unsupported requests, incompatible device/software, access denial, and unknown transport errors.</p>
+<p>Important methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Start()</code></td>
+<td>Initialize the connected peripheral session</td>
+</tr>
+<tr>
+<td><code>RequestVersion(...)</code></td>
+<td>Request hardware/software version</td>
+</tr>
+<tr>
+<td><code>RequestBattery(...)</code></td>
+<td>Request battery percentage</td>
+</tr>
+<tr>
+<td><code>RequestIMUAngle(...)</code> and related IMU methods</td>
+<td>Request IMU readings</td>
+</tr>
+<tr>
+<td><code>GetCurrentStatusGNSS(...)</code></td>
+<td>Read enabled state for a navigation system</td>
+</tr>
+<tr>
+<td><code>ChangeStatusGNSS(...)</code></td>
+<td>Enable or disable a navigation system except GPS</td>
+</tr>
+<tr>
+<td><code>ActivateAllConstellationGNSS()</code></td>
+<td>Enable all supported constellations</td>
+</tr>
+<tr>
+<td><code>ChangeStatusNAVDOP(...)</code></td>
+<td>Enable or disable NAV-DOP messages</td>
+</tr>
+<tr>
+<td><code>ChangeStatusNAVPVT(...)</code></td>
+<td>Enable or disable NAV-PVT messages</td>
+</tr>
+<tr>
+<td><code>GetCurrentMinimumElevation(...)</code></td>
+<td>Read the current elevation mask</td>
+</tr>
+<tr>
+<td><code>SetMinimumElevation(...)</code></td>
+<td>Set the elevation mask</td>
+</tr>
+<tr>
+<td><code>GetChangingRateOfMessages(...)</code></td>
+<td>Read GNSS message rate</td>
+</tr>
+<tr>
+<td><code>SetChangingRateOfMessages(...)</code></td>
+<td>Set GNSS message rate</td>
+</tr>
+<tr>
+<td><code>SetDynamicState(...)</code></td>
+<td>Set pedestrian or stationary dynamic model</td>
+</tr>
+<tr>
+<td><code>GetCurrentDynamicState(...)</code></td>
+<td>Read the active dynamic model</td>
+</tr>
+<tr>
+<td><code>ResetViDoc()</code></td>
+<td>Request viDoc reset</td>
+</tr>
+</tbody>
+</table>
+<h2 id="intripservice-and-intriptaskservice"><code>INtripService</code> And <code>INtripTaskService</code></h2>
+<p><code>INtripService</code> fetches mountpoints and creates <code>INtripTaskService</code> instances. Keep one <code>INtripService</code> for the NTRIP flow and keep the returned task for one correction stream.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INtripService.Mountpoints(...)</code></td>
+<td>Load available mountpoints from a caster</td>
+</tr>
+<tr>
+<td><code>INtripService.Task(...)</code></td>
+<td>Create a correction task for a mountpoint and current GGA</td>
+</tr>
+<tr>
+<td><code>INtripTaskService.Start(...)</code></td>
+<td>Start the correction connection</td>
+</tr>
+<tr>
+<td><code>INtripTaskService.Data(...)</code></td>
+<td>Receive correction bytes or terminal stream errors</td>
+</tr>
+<tr>
+<td><code>INtripTaskService.SetGga(...)</code></td>
+<td>Update the task with the current position</td>
+</tr>
+<tr>
+<td><code>INtripTaskService.Disconnect()</code></td>
+<td>Stop the correction stream</td>
+</tr>
+</tbody>
+</table>
+<p><code>INtripTaskService</code> also exposes <code>Host</code>, <code>Port</code>, and <code>MountPoint</code> for diagnostics. Credentials remain in <code>NtripConnectionInformation</code>; do not show passwords in UI or logs.</p>
+<p><code>NtripConnectionInformation</code> has two public force flags:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>forceHttpsConnection</code></td>
+<td>Force TLS for the correction stream</td>
+</tr>
+<tr>
+<td><code>forceHttpsMountpointsConnection</code></td>
+<td>Force HTTPS for mountpoint discovery</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="recipes.html#fetch-ntrip-mountpoints">Fetch NTRIP Mountpoints</a> and <a href="recipes.html#start-an-ntrip-task">Start An NTRIP Task</a>.</p>
+<h2 id="igpsservice"><code>IGPSService</code></h2>
+<p>Combines <code>IPeripheralService</code>, <code>IBluetoothService</code>, and <code>INtripTaskService</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Callback/method</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Coordinate(...)</code></td>
+<td>Current coordinate</td>
+</tr>
+<tr>
+<td><code>TimestampedCoordinate(...)</code></td>
+<td>Current coordinate with timestamp</td>
+</tr>
+<tr>
+<td><code>HorizontalAccuracy(...)</code> / <code>VerticalAccuracy(...)</code></td>
+<td>Accuracy values in meters</td>
+</tr>
+<tr>
+<td><code>Quality(...)</code></td>
+<td>GPS quality indicator</td>
+</tr>
+<tr>
+<td><code>Hdop(...)</code></td>
+<td>Horizontal dilution of precision</td>
+</tr>
+<tr>
+<td><code>IsCorrecting(...)</code></td>
+<td>Whether corrected data is active</td>
+</tr>
+<tr>
+<td><code>ShouldDisconnect(...)</code></td>
+<td>Structured disconnect/reconnect signal</td>
+</tr>
+<tr>
+<td><code>Start(...)</code></td>
+<td>Start NTRIP/GPS processing</td>
+</tr>
+<tr>
+<td><code>Reconnect()</code></td>
+<td>Attempt reconnect</td>
+</tr>
+</tbody>
+</table>
+<p>Create GPS with <code>automaticallyReconnectNtrip: true</code> when the SDK should retry NTRIP after a correction stream disruption. Use <code>ShouldDisconnect(...)</code> for cases that need application-level UI or recovery, and call <code>Reconnect()</code> from that UI when the user chooses to recover.</p>
+<p>See <a href="recipes.html#start-gps-with-automatic-ntrip-reconnect">Start GPS With Automatic NTRIP Reconnect</a>.</p>
+<h2 id="ilaserservice"><code>ILaserService</code></h2>
+<p>Created on top of an active <code>IPeripheralService</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GetLasersStatus(...)</code></td>
+<td>Read current laser state</td>
+</tr>
+<tr>
+<td><code>TurnLaserOn(...)</code></td>
+<td>Turn on the selected laser position</td>
+</tr>
+<tr>
+<td><code>TurnLaserOff(...)</code></td>
+<td>Turn off the selected laser position</td>
+</tr>
+<tr>
+<td><code>Record(...)</code></td>
+<td>Start a measurement session</td>
+</tr>
+</tbody>
+</table>
+<p>Keep one laser service for the peripheral session. For devices without lasers, hide or disable laser features based on <code>CurrentDevice</code>.</p>
+<p>See <a href="recipes.html#record-a-laser-measurement">Record A Laser Measurement</a>.</p>
+<h2 id="ideviceservice"><code>IDeviceService</code></h2>
+<p>Exposes mobile device motion updates and is independent from the viDoc peripheral session.</p>
+<pre><code class="lang-csharp">IDeviceService device = Vigram.DeviceService();
+device.StartDeviceMotionUpdates(motion =&gt; Debug.Log(motion.Attitude));
+device.StopDeviceMotionUpdates();
+</code></pre>
+<p>Keep the same <code>IDeviceService</code> instance so <code>StopDeviceMotionUpdates()</code> stops the updates that were started by that owner.</p>
+<h2 id="ilogger"><code>ILogger</code></h2>
+<p><code>Vigram.LoggerService(filename)</code> creates an SDK logger. Attach it before <code>IPeripheralService.Start()</code> so startup, configuration, NMEA, device, and satellite events are captured from the beginning of the session.</p>
+<p>If the path is relative, the SDK writes under <code>Application.persistentDataPath</code>. Android also supports the <code>android-documents://</code> scheme for the Documents directory.</p>
+<p>See <a href="recipes.html#log-a-full-session">Log A Full Session</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,1165 @@
+{
+  "source_base_path": "/Users/iaroslav/Documents/viGram/unity/private/dev/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.Accuracy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.Accuracy.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.AuthenticationError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.AuthenticationError.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.AuthenticationResult.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.AuthenticationResult.Error.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.AuthenticationResult.Success.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.AuthenticationResult.Success.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.AuthenticationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.AuthenticationResult.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.BPeripheral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.BPeripheral.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CBManagerState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CBManagerState.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CMAcceleration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CMAcceleration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CMAttitude.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CMAttitude.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CMDeviceMotion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CMDeviceMotion.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CMQuaternion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CMQuaternion.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CMRotationMatrix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CMRotationMatrix.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.CMRotationRate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.CMRotationRate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DMMCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DMMCoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Battery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Battery.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Baudrate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Baudrate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Device.HardwareRevisions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Device.HardwareRevisions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Device.Housings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Device.Housings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Device.Mounts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Device.Mounts.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Device.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Device.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Hardware.DeviceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Hardware.DeviceType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Hardware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Hardware.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.HardwareIndex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.HardwareIndex.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuACC.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuACC.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuAngle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuAngle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuCalibrationStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuCalibrationStatus.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuMagneticRaw.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuMagneticRaw.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuRotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuRotation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuRotationRaw.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuRotationRaw.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.ImuTemp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.ImuTemp.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.LaserState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.LaserState.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.LaserStateEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.LaserStateEnum.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Measurement.MeasurementQuality.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Measurement.MeasurementQuality.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Measurement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Measurement.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.SerialNumber.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.SerialNumber.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Software.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Software.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.Version.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.Version.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DeviceVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DeviceVersion.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.Direction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.Direction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.DynamicStateType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.DynamicStateType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.ElevationValue.Elevation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.ElevationValue.Elevation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.ElevationValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.ElevationValue.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.GPSCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.GPSCoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.GPSDisconnectSignal.Reason.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.GPSDisconnectSignal.Reason.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.GPSDisconnectSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.GPSDisconnectSignal.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.GPSQualityIndicator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.GPSQualityIndicator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.GPSQualityIndicatorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.GPSQualityIndicatorExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.GPSServiceQuality.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.GPSServiceQuality.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.IAuthenticationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.IAuthenticationService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.IBluetoothService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.IBluetoothService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.IDeviceService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.IDeviceService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.IGPSService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.IGPSService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.ILaserService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.ILaserService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.INtripService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.INtripService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.INtripTaskService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.INtripTaskService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.IPeripheralService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.IPeripheralService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.LaserConfiguration.Position.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.LaserConfiguration.Position.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.LaserConfiguration.ShotMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.LaserConfiguration.ShotMode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.LaserConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.LaserConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NavigationSystemValue.NavigationSystemType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NavigationSystemValue.NavigationSystemType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NavigationSystemValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NavigationSystemValue.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NmeaMessage.Gga.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NmeaMessage.Gga.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NmeaMessage.Gst.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NmeaMessage.Gst.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NmeaMessage.Txt.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NmeaMessage.Txt.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NmeaMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NmeaMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripConnectionInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripConnectionInformation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripMountPoint.Authentication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripMountPoint.Authentication.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripMountPoint.Carrier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripMountPoint.Carrier.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripMountPoint.DataFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripMountPoint.DataFormat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripMountPoint.NavigationSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripMountPoint.NavigationSystem.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripMountPoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripMountPoint.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripState.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.NtripStateExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.NtripStateExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.PeripheralConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.PeripheralConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.RateValue.Rate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.RateValue.Rate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.RateValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.RateValue.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.Acknowledge.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.Acknowledge.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.ChangingRate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.ChangingRate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.Dop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.Dop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.DynamicState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.DynamicState.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.Elevation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.Elevation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.Pvt.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.Pvt.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.RAWX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.RAWX.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.SFRBX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.SFRBX.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.StatusSattelite.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.StatusSattelite.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.SatelliteMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.SatelliteMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StatePeripheral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StatePeripheral.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateResetViDoc.Failure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateResetViDoc.Failure.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateResetViDoc.IsReseting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateResetViDoc.IsReseting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateResetViDoc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateResetViDoc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateViDoc.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateViDoc.Error.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateViDoc.Notice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateViDoc.Notice.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateViDoc.User.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateViDoc.User.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateViDoc.Warning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateViDoc.Warning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.StateViDoc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.StateViDoc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.Vector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.Vector.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.Vigram.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.Vigram.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-ref/ViGram.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/ViGram.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api-ref/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-ref/toc.html"
+        },
+        ".json": {
+          "relative_path": "api-ref/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/analysis.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/analysis.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/migration.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/migration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/platforms-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/platforms-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/recipes.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/recipes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/services.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/troubleshooting.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/troubleshooting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "assets/custom.css",
+      "output": {
+        "resource": {
+          "relative_path": "assets/custom.css"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "assets/custom.js",
+      "output": {
+        "resource": {
+          "relative_path": "assets/custom.js"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "assets/vigram-logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "assets/vigram-logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "assets/vigram-logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "assets/vigram-logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

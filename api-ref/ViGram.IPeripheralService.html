@@ -1,0 +1,1063 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface IPeripheralService | viDoc SDK for Unity </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface IPeripheralService | viDoc SDK for Unity ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link rel="stylesheet" href="../assets/custom.css">
+</head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../assets/vigram-logo.png" alt="viDoc SDK for Unity">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ViGram.IPeripheralService">
+
+
+
+  <h1 id="ViGram_IPeripheralService" data-uid="ViGram.IPeripheralService" class="text-break">Interface IPeripheralService</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ViGram.html">ViGram</a></h6>
+  <h6><strong>Assembly</strong>: ViGram.dll</h6>
+  <h5 id="ViGram_IPeripheralService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPeripheralService</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <a id="ViGram_IPeripheralService_ConfigurationState_" data-uid="ViGram.IPeripheralService.ConfigurationState*"></a>
+  <h4 id="ViGram_IPeripheralService_ConfigurationState" data-uid="ViGram.IPeripheralService.ConfigurationState">ConfigurationState</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;StatePeripheralConfiguration&gt; ConfigurationState { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<span class="xref">StatePeripheralConfiguration</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_CurrentDevice_" data-uid="ViGram.IPeripheralService.CurrentDevice*"></a>
+  <h4 id="ViGram_IPeripheralService_CurrentDevice" data-uid="ViGram.IPeripheralService.CurrentDevice">CurrentDevice</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;DeviceMessage.Device&gt; CurrentDevice { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.Device.html">Device</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_Debug_" data-uid="ViGram.IPeripheralService.Debug*"></a>
+  <h4 id="ViGram_IPeripheralService_Debug" data-uid="ViGram.IPeripheralService.Debug">Debug</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;string&gt; Debug { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_DeviceMessages_" data-uid="ViGram.IPeripheralService.DeviceMessages*"></a>
+  <h4 id="ViGram_IPeripheralService_DeviceMessages" data-uid="ViGram.IPeripheralService.DeviceMessages">DeviceMessages</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;DeviceMessage&gt; DeviceMessages { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_Nmea_" data-uid="ViGram.IPeripheralService.Nmea*"></a>
+  <h4 id="ViGram_IPeripheralService_Nmea" data-uid="ViGram.IPeripheralService.Nmea">Nmea</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;NmeaMessage&gt; Nmea { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.NmeaMessage.html">NmeaMessage</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_Peripheral_" data-uid="ViGram.IPeripheralService.Peripheral*"></a>
+  <h4 id="ViGram_IPeripheralService_Peripheral" data-uid="ViGram.IPeripheralService.Peripheral">Peripheral</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">BPeripheral Peripheral { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.BPeripheral.html">BPeripheral</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_PpkMeasurementsState_" data-uid="ViGram.IPeripheralService.PpkMeasurementsState*"></a>
+  <h4 id="ViGram_IPeripheralService_PpkMeasurementsState" data-uid="ViGram.IPeripheralService.PpkMeasurementsState">PpkMeasurementsState</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;bool&gt; PpkMeasurementsState { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ProtocolVersion_" data-uid="ViGram.IPeripheralService.ProtocolVersion*"></a>
+  <h4 id="ViGram_IPeripheralService_ProtocolVersion" data-uid="ViGram.IPeripheralService.ProtocolVersion">ProtocolVersion</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;double&gt; ProtocolVersion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_SatelliteMessages_" data-uid="ViGram.IPeripheralService.SatelliteMessages*"></a>
+  <h4 id="ViGram_IPeripheralService_SatelliteMessages" data-uid="ViGram.IPeripheralService.SatelliteMessages">SatelliteMessages</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;SatelliteMessage&gt; SatelliteMessages { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.SatelliteMessage.html">SatelliteMessage</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_SerialNumber_" data-uid="ViGram.IPeripheralService.SerialNumber*"></a>
+  <h4 id="ViGram_IPeripheralService_SerialNumber" data-uid="ViGram.IPeripheralService.SerialNumber">SerialNumber</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string SerialNumber { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_State_" data-uid="ViGram.IPeripheralService.State*"></a>
+  <h4 id="ViGram_IPeripheralService_State" data-uid="ViGram.IPeripheralService.State">State</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;StatePeripheral&gt; State { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.StatePeripheral.html">StatePeripheral</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ViDocResetState_" data-uid="ViGram.IPeripheralService.ViDocResetState*"></a>
+  <h4 id="ViGram_IPeripheralService_ViDocResetState" data-uid="ViGram.IPeripheralService.ViDocResetState">ViDocResetState</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;StateResetViDoc&gt; ViDocResetState { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.StateResetViDoc.html">StateResetViDoc</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ViDocState_" data-uid="ViGram.IPeripheralService.ViDocState*"></a>
+  <h4 id="ViGram_IPeripheralService_ViDocState" data-uid="ViGram.IPeripheralService.ViDocState">ViDocState</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Action&lt;StateViDoc&gt; ViDocState { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.StateViDoc.html">StateViDoc</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <a id="ViGram_IPeripheralService_ActivateAllConstellationGNSS_" data-uid="ViGram.IPeripheralService.ActivateAllConstellationGNSS*"></a>
+  <h4 id="ViGram_IPeripheralService_ActivateAllConstellationGNSS" data-uid="ViGram.IPeripheralService.ActivateAllConstellationGNSS">ActivateAllConstellationGNSS()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ActivateAllConstellationGNSS()</code></pre>
+  </div>
+  <a id="ViGram_IPeripheralService_ChangeStatusAllNavMessages_" data-uid="ViGram.IPeripheralService.ChangeStatusAllNavMessages*"></a>
+  <h4 id="ViGram_IPeripheralService_ChangeStatusAllNavMessages_System_Boolean_" data-uid="ViGram.IPeripheralService.ChangeStatusAllNavMessages(System.Boolean)">ChangeStatusAllNavMessages(bool)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ChangeStatusAllNavMessages(bool activate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">activate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ChangeStatusGNSS_" data-uid="ViGram.IPeripheralService.ChangeStatusGNSS*"></a>
+  <h4 id="ViGram_IPeripheralService_ChangeStatusGNSS_ViGram_NavigationSystemValue_NavigationSystemType_System_Boolean_" data-uid="ViGram.IPeripheralService.ChangeStatusGNSS(ViGram.NavigationSystemValue.NavigationSystemType,System.Boolean)">ChangeStatusGNSS(NavigationSystemType, bool)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ChangeStatusGNSS(NavigationSystemValue.NavigationSystemType satellite, bool activate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.NavigationSystemValue.html">NavigationSystemValue</a>.<a class="xref" href="ViGram.NavigationSystemValue.NavigationSystemType.html">NavigationSystemType</a></td>
+        <td><span class="parametername">satellite</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">activate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ChangeStatusNAVDOP_" data-uid="ViGram.IPeripheralService.ChangeStatusNAVDOP*"></a>
+  <h4 id="ViGram_IPeripheralService_ChangeStatusNAVDOP_System_Boolean_" data-uid="ViGram.IPeripheralService.ChangeStatusNAVDOP(System.Boolean)">ChangeStatusNAVDOP(bool)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ChangeStatusNAVDOP(bool activate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">activate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ChangeStatusNAVPVT_" data-uid="ViGram.IPeripheralService.ChangeStatusNAVPVT*"></a>
+  <h4 id="ViGram_IPeripheralService_ChangeStatusNAVPVT_System_Boolean_" data-uid="ViGram.IPeripheralService.ChangeStatusNAVPVT(System.Boolean)">ChangeStatusNAVPVT(bool)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ChangeStatusNAVPVT(bool activate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">activate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ChangeStatusRXM_" data-uid="ViGram.IPeripheralService.ChangeStatusRXM*"></a>
+  <h4 id="ViGram_IPeripheralService_ChangeStatusRXM_System_Boolean_" data-uid="ViGram.IPeripheralService.ChangeStatusRXM(System.Boolean)">ChangeStatusRXM(bool)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ChangeStatusRXM(bool activate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">activate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ExitManualIMUCalibration_" data-uid="ViGram.IPeripheralService.ExitManualIMUCalibration*"></a>
+  <h4 id="ViGram_IPeripheralService_ExitManualIMUCalibration" data-uid="ViGram.IPeripheralService.ExitManualIMUCalibration">ExitManualIMUCalibration()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ExitManualIMUCalibration()</code></pre>
+  </div>
+  <a id="ViGram_IPeripheralService_GetChangingRateOfMessages_" data-uid="ViGram.IPeripheralService.GetChangingRateOfMessages*"></a>
+  <h4 id="ViGram_IPeripheralService_GetChangingRateOfMessages_System_Action_ViGram_SatelliteMessage_ChangingRate__" data-uid="ViGram.IPeripheralService.GetChangingRateOfMessages(System.Action{ViGram.SatelliteMessage.ChangingRate})">GetChangingRateOfMessages(Action&lt;ChangingRate&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void GetChangingRateOfMessages(Action&lt;SatelliteMessage.ChangingRate&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.SatelliteMessage.html">SatelliteMessage</a>.<a class="xref" href="ViGram.SatelliteMessage.ChangingRate.html">ChangingRate</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_GetCurrentDynamicState_" data-uid="ViGram.IPeripheralService.GetCurrentDynamicState*"></a>
+  <h4 id="ViGram_IPeripheralService_GetCurrentDynamicState_System_Action_ViGram_SatelliteMessage_DynamicState__" data-uid="ViGram.IPeripheralService.GetCurrentDynamicState(System.Action{ViGram.SatelliteMessage.DynamicState})">GetCurrentDynamicState(Action&lt;DynamicState&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void GetCurrentDynamicState(Action&lt;SatelliteMessage.DynamicState&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.SatelliteMessage.html">SatelliteMessage</a>.<a class="xref" href="ViGram.SatelliteMessage.DynamicState.html">DynamicState</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_GetCurrentMinimumElevation_" data-uid="ViGram.IPeripheralService.GetCurrentMinimumElevation*"></a>
+  <h4 id="ViGram_IPeripheralService_GetCurrentMinimumElevation_System_Action_ViGram_SatelliteMessage_Elevation__" data-uid="ViGram.IPeripheralService.GetCurrentMinimumElevation(System.Action{ViGram.SatelliteMessage.Elevation})">GetCurrentMinimumElevation(Action&lt;Elevation&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void GetCurrentMinimumElevation(Action&lt;SatelliteMessage.Elevation&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.SatelliteMessage.html">SatelliteMessage</a>.<a class="xref" href="ViGram.SatelliteMessage.Elevation.html">Elevation</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_GetCurrentStatusGNSS_" data-uid="ViGram.IPeripheralService.GetCurrentStatusGNSS*"></a>
+  <h4 id="ViGram_IPeripheralService_GetCurrentStatusGNSS_ViGram_NavigationSystemValue_NavigationSystemType_System_Action_ViGram_SatelliteMessage_StatusSattelite__" data-uid="ViGram.IPeripheralService.GetCurrentStatusGNSS(ViGram.NavigationSystemValue.NavigationSystemType,System.Action{ViGram.SatelliteMessage.StatusSattelite})">GetCurrentStatusGNSS(NavigationSystemType, Action&lt;StatusSattelite&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void GetCurrentStatusGNSS(NavigationSystemValue.NavigationSystemType satellite, Action&lt;SatelliteMessage.StatusSattelite&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.NavigationSystemValue.html">NavigationSystemValue</a>.<a class="xref" href="ViGram.NavigationSystemValue.NavigationSystemType.html">NavigationSystemType</a></td>
+        <td><span class="parametername">satellite</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.SatelliteMessage.html">SatelliteMessage</a>.<a class="xref" href="ViGram.SatelliteMessage.StatusSattelite.html">StatusSattelite</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_NextStepManualIMUCalibration_" data-uid="ViGram.IPeripheralService.NextStepManualIMUCalibration*"></a>
+  <h4 id="ViGram_IPeripheralService_NextStepManualIMUCalibration" data-uid="ViGram.IPeripheralService.NextStepManualIMUCalibration">NextStepManualIMUCalibration()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void NextStepManualIMUCalibration()</code></pre>
+  </div>
+  <a id="ViGram_IPeripheralService_RequestBattery_" data-uid="ViGram.IPeripheralService.RequestBattery*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestBattery_System_Action_ViGram_DeviceMessage_Battery__" data-uid="ViGram.IPeripheralService.RequestBattery(System.Action{ViGram.DeviceMessage.Battery})">RequestBattery(Action&lt;Battery&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestBattery(Action&lt;DeviceMessage.Battery&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.Battery.html">Battery</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestChange_" data-uid="ViGram.IPeripheralService.RequestChange*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestChange_ViGram_DeviceMessage_Baudrate_" data-uid="ViGram.IPeripheralService.RequestChange(ViGram.DeviceMessage.Baudrate)">RequestChange(Baudrate)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestChange(DeviceMessage.Baudrate baudrate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.Baudrate.html">Baudrate</a></td>
+        <td><span class="parametername">baudrate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMUAngle_" data-uid="ViGram.IPeripheralService.RequestIMUAngle*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMUAngle_System_Action_ViGram_DeviceMessage_ImuAngle__" data-uid="ViGram.IPeripheralService.RequestIMUAngle(System.Action{ViGram.DeviceMessage.ImuAngle})">RequestIMUAngle(Action&lt;ImuAngle&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMUAngle(Action&lt;DeviceMessage.ImuAngle&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuAngle.html">ImuAngle</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMUCalibration_" data-uid="ViGram.IPeripheralService.RequestIMUCalibration*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMUCalibration_System_Boolean_" data-uid="ViGram.IPeripheralService.RequestIMUCalibration(System.Boolean)">RequestIMUCalibration(bool)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMUCalibration(bool autoMode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">autoMode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMUCalibrationStatus_" data-uid="ViGram.IPeripheralService.RequestIMUCalibrationStatus*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMUCalibrationStatus_System_Action_ViGram_DeviceMessage_ImuCalibrationStatus__" data-uid="ViGram.IPeripheralService.RequestIMUCalibrationStatus(System.Action{ViGram.DeviceMessage.ImuCalibrationStatus})">RequestIMUCalibrationStatus(Action&lt;ImuCalibrationStatus&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMUCalibrationStatus(Action&lt;DeviceMessage.ImuCalibrationStatus&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuCalibrationStatus.html">ImuCalibrationStatus</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMUDataAcc_" data-uid="ViGram.IPeripheralService.RequestIMUDataAcc*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMUDataAcc_System_Action_ViGram_DeviceMessage_ImuACC__" data-uid="ViGram.IPeripheralService.RequestIMUDataAcc(System.Action{ViGram.DeviceMessage.ImuACC})">RequestIMUDataAcc(Action&lt;ImuACC&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMUDataAcc(Action&lt;DeviceMessage.ImuACC&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuACC.html">ImuACC</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMUMagneticRaw_" data-uid="ViGram.IPeripheralService.RequestIMUMagneticRaw*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMUMagneticRaw_System_Action_ViGram_DeviceMessage_ImuMagneticRaw__" data-uid="ViGram.IPeripheralService.RequestIMUMagneticRaw(System.Action{ViGram.DeviceMessage.ImuMagneticRaw})">RequestIMUMagneticRaw(Action&lt;ImuMagneticRaw&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMUMagneticRaw(Action&lt;DeviceMessage.ImuMagneticRaw&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuMagneticRaw.html">ImuMagneticRaw</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMURotation_" data-uid="ViGram.IPeripheralService.RequestIMURotation*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMURotation_System_Action_ViGram_DeviceMessage_ImuRotation__" data-uid="ViGram.IPeripheralService.RequestIMURotation(System.Action{ViGram.DeviceMessage.ImuRotation})">RequestIMURotation(Action&lt;ImuRotation&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMURotation(Action&lt;DeviceMessage.ImuRotation&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuRotation.html">ImuRotation</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMURotationRaw_" data-uid="ViGram.IPeripheralService.RequestIMURotationRaw*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMURotationRaw_System_Action_ViGram_DeviceMessage_ImuRotationRaw__" data-uid="ViGram.IPeripheralService.RequestIMURotationRaw(System.Action{ViGram.DeviceMessage.ImuRotationRaw})">RequestIMURotationRaw(Action&lt;ImuRotationRaw&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMURotationRaw(Action&lt;DeviceMessage.ImuRotationRaw&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuRotationRaw.html">ImuRotationRaw</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestIMUTemp_" data-uid="ViGram.IPeripheralService.RequestIMUTemp*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestIMUTemp_System_Action_ViGram_DeviceMessage_ImuTemp__" data-uid="ViGram.IPeripheralService.RequestIMUTemp(System.Action{ViGram.DeviceMessage.ImuTemp})">RequestIMUTemp(Action&lt;ImuTemp&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestIMUTemp(Action&lt;DeviceMessage.ImuTemp&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.ImuTemp.html">ImuTemp</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_RequestVersion_" data-uid="ViGram.IPeripheralService.RequestVersion*"></a>
+  <h4 id="ViGram_IPeripheralService_RequestVersion_System_Action_ViGram_DeviceMessage_Version__" data-uid="ViGram.IPeripheralService.RequestVersion(System.Action{ViGram.DeviceMessage.Version})">RequestVersion(Action&lt;Version&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestVersion(Action&lt;DeviceMessage.Version&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="ViGram.DeviceMessage.html">DeviceMessage</a>.<a class="xref" href="ViGram.DeviceMessage.Version.html">Version</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_ResetViDoc_" data-uid="ViGram.IPeripheralService.ResetViDoc*"></a>
+  <h4 id="ViGram_IPeripheralService_ResetViDoc" data-uid="ViGram.IPeripheralService.ResetViDoc">ResetViDoc()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ResetViDoc()</code></pre>
+  </div>
+  <a id="ViGram_IPeripheralService_SetChangingRateOfMessages_" data-uid="ViGram.IPeripheralService.SetChangingRateOfMessages*"></a>
+  <h4 id="ViGram_IPeripheralService_SetChangingRateOfMessages_ViGram_RateValue_Rate_" data-uid="ViGram.IPeripheralService.SetChangingRateOfMessages(ViGram.RateValue.Rate)">SetChangingRateOfMessages(Rate)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetChangingRateOfMessages(RateValue.Rate rate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.RateValue.html">RateValue</a>.<a class="xref" href="ViGram.RateValue.Rate.html">Rate</a></td>
+        <td><span class="parametername">rate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_SetDynamicState_" data-uid="ViGram.IPeripheralService.SetDynamicState*"></a>
+  <h4 id="ViGram_IPeripheralService_SetDynamicState_ViGram_DynamicStateType_" data-uid="ViGram.IPeripheralService.SetDynamicState(ViGram.DynamicStateType)">SetDynamicState(DynamicStateType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetDynamicState(DynamicStateType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.DynamicStateType.html">DynamicStateType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_SetMinimumElevation_" data-uid="ViGram.IPeripheralService.SetMinimumElevation*"></a>
+  <h4 id="ViGram_IPeripheralService_SetMinimumElevation_ViGram_ElevationValue_Elevation_" data-uid="ViGram.IPeripheralService.SetMinimumElevation(ViGram.ElevationValue.Elevation)">SetMinimumElevation(Elevation)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetMinimumElevation(ElevationValue.Elevation angle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ViGram.ElevationValue.html">ElevationValue</a>.<a class="xref" href="ViGram.ElevationValue.Elevation.html">Elevation</a></td>
+        <td><span class="parametername">angle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="ViGram_IPeripheralService_Start_" data-uid="ViGram.IPeripheralService.Start*"></a>
+  <h4 id="ViGram_IPeripheralService_Start" data-uid="ViGram.IPeripheralService.Start">Start()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Start()</code></pre>
+  </div>
+  <a id="ViGram_IPeripheralService_StopRecordPPKMeasurements_" data-uid="ViGram.IPeripheralService.StopRecordPPKMeasurements*"></a>
+  <h4 id="ViGram_IPeripheralService_StopRecordPPKMeasurements" data-uid="ViGram.IPeripheralService.StopRecordPPKMeasurements">StopRecordPPKMeasurements()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void StopRecordPPKMeasurements()</code></pre>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script src="../assets/custom.js"></script>
+</body>
+</html>
