@@ -89,4 +89,6 @@ The SDK package includes:
 
 ## Documentation
 
-API documentation is prepared for the `1.0.0` release. Public examples are available in the demo project.
+View the Unity SDK documentation on the [web](https://vigram-sw.github.io/sdk-unity-vidoc-distribution/).
+
+Public examples are available in the demo project.
