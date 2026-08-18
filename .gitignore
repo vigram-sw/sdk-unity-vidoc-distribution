@@ -1,0 +1,79 @@
+# =============== Unity standard ignores ===============
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+sysinfo.txt
+
+# Jetbrains Rider
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# VS + Rider cache
+.vs/
+.gradle/
+ExportedObj/
+.consulo/
+
+# =============== Auto-generated C# project files ===============
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Meta for pdb/mdb
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# =============== Builds ===============
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crashlytics
+crashlytics-build.properties
+
+# Addressables packed binaries
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Temporary StreamingAssets auto-files
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# =============== Additional for your project ===============
+# Ignore NuGetForUnity caches & generated packages
+/NuGetForUnity/
+/Packages/NuGet/*
+
+# Ignore build folders similar to iosBuild
+/iosBuild/
+/build_ios/
+/build_android/
+/bin/
+/.utmp/
+/Assets/_Recovery/
+
+# VS Code
+.vscode/
+
+# Rider / VS new solution format
+*.slnx
+
+# macOS junk files
+.DS_Store
